@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-# 50.times { Song.create({title: Faker::Book.title}) }
+50.times { Song.create({title: Faker::Book.title}) }
 
 100.times { Section.create({ song_id: 1+rand(50), section_type: ["verse", "chorus"].sample}) }
 
