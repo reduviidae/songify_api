@@ -1,4 +1,4 @@
 class Section < ApplicationRecord
-  belongs_to :snippet
+  has_many :snippets
   belongs_to :song
 end
