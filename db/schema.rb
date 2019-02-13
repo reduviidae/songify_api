@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_143501) do
   create_table "sections", force: :cascade do |t|
     t.integer "song_id"
     t.string "section_type"
+    t.boolean "complete", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,8 +32,8 @@ ActiveRecord::Schema.define(version: 2019_02_13_143501) do
 
   create_table "songs", force: :cascade do |t|
     t.string "title"
-    t.integer "likes"
-    t.boolean "complete"
+    t.integer "likes", default: 0
+    t.boolean "complete", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
