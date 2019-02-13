@@ -6,7 +6,7 @@ class Api::V1::SongsController < ApplicationController
 
   def create
   @song = Song.create(song_params)
-  redirect_to `/api/v1/songs/${@song}`
+  redirect_to `/api/v1/songs/#{@song}`
   end
 
   def show
