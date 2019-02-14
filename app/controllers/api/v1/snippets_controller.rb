@@ -5,7 +5,8 @@ class Api::V1::SnippetsController < ApplicationController
   end
 
   def create
-  @snippet = Snippet.create(snippet_params)
+    @snippet = Snippet.create(snippet_params)
+    render :json => @snippet, each_serializer: SnippetSerializer
   end
 
   def show
@@ -15,7 +16,7 @@ class Api::V1::SnippetsController < ApplicationController
 
   private
   def snippet_params
-      params.require(:snippet).permit(:title, :id, :likes, :complete)
+      params.require(:snippet).permit(:id, :section_id, :content)
   end
 
 end

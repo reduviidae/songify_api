@@ -5,7 +5,9 @@ class Api::V1::SectionsController < ApplicationController
   end
 
   def create
-  @section = Section.create(section_params)
+    @section = Section.create(section_params)
+    p @section.errors
+    render :json => @section, each_serializer: SectionSerializer
   end
 
   def show
@@ -15,7 +17,7 @@ class Api::V1::SectionsController < ApplicationController
 
   private
   def section_params
-      params.require(:section).permit(:title, :id, :likes, :complete)
+      params.require(:section).permit(:song_id, :section_type)
   end
 
 end
