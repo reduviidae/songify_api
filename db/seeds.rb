@@ -7,8 +7,27 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-50.times { Song.create({title: Faker::Book.title}) }
+Song.destroy_all
+Section.destroy_all
+Snippet.destroy_all
 
-100.times { Section.create({ song_id: 1+rand(50), section_type: ["verse", "chorus"].sample}) }
+50.times { Song.create({title: Faker::TvShows::RuPaul.quote}) }
 
-200.times { Snippet.create({section_id: 1+rand(100), content: Faker::Lorem.sentence(2, true, 6)}) }
+Song.all.each do |song|
+  rand(3).times do
+    Section.create({ song_id: song.id, section_type: "verse"})
+  end
+end
+
+Section.all.each do |section|
+  rand(5).times do
+    Snippet.create({section_id: section.id, content: Faker::Movies::Lebowski.quote})
+  end
+end
+
+Section.all.each do |section|
+  if section.snippets.length >=4
+    section.complete = true
+    section.save
+  end
+end
