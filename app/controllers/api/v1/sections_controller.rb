@@ -1,7 +1,7 @@
 class Api::V1::SectionsController < ApplicationController
   def index
     @sections = Section.all
-    render json: @sections
+    render :json => @sections, each_serializer: SectionSerializer
   end
 
   def create
@@ -10,7 +10,7 @@ class Api::V1::SectionsController < ApplicationController
 
   def show
     @section = Section.find(params[:id])
-    render json: @section
+    render :json => @section, each_serializer: SectionSerializer
   end
 
   private
