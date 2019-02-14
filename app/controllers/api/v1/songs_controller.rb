@@ -1,7 +1,7 @@
 class Api::V1::SongsController < ApplicationController
   def index
-    @songs = Song.all
-    render json: @songs
+    @songs = Song.all()
+    render :json => @songs, each_serializer: SongSerializer
   end
 
   def create
@@ -10,7 +10,7 @@ class Api::V1::SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
-    render json: @song
+    render :json => @song, each_serializer: SongSerializer
   end
 
   private

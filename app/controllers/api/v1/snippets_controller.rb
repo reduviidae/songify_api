@@ -1,7 +1,7 @@
 class Api::V1::SnippetsController < ApplicationController
   def index
     @snippets = Snippet.all
-    render json: @snippets
+    render :json => @snippets, each_serializer: SnippetSerializer
   end
 
   def create
@@ -10,7 +10,7 @@ class Api::V1::SnippetsController < ApplicationController
 
   def show
     @snippet = Snippet.find(params[:id])
-    render json: @snippet
+    render :json => @snippet, each_serializer: SnippetSerializer
   end
 
   private
