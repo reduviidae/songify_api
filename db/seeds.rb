@@ -14,13 +14,13 @@ Snippet.destroy_all
 50.times { Song.create({title: Faker::TvShows::RuPaul.quote}) }
 
 Song.all.each do |song|
-  rand(3).times do
+  1+rand(3).times do
     Section.create({ song_id: song.id, section_type: "verse"})
   end
 end
 
 Section.all.each do |section|
-  rand(5).times do
+  1+rand(4).times do
     Snippet.create({section_id: section.id, content: Faker::Movies::Lebowski.quote})
   end
 end
