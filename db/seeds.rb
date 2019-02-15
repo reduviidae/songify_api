@@ -13,11 +13,17 @@ Snippet.destroy_all
 
 50.times { Song.create({title: Faker::TvShows::RuPaul.quote}) }
 
+
+
 Song.all.each do |song|
-  rand(3).times do
-    Section.create({ song_id: song.id, section_type: "verse"})
+	array_of_sections = ["verse", "verse", "chorus", "verse", "verse"]
+  array_of_sections.length.times do
+		section_name = array_of_sections.shift()
+    Section.create({ song_id: song.id, section_type: section_name })
   end
 end
+
+
 
 Section.all.each do |section|
   rand(5).times do
@@ -26,8 +32,20 @@ Section.all.each do |section|
 end
 
 Section.all.each do |section|
-  if section.snippets.length >=4
-    section.complete = true
-    section.save
-  end
+  if section.section_type == "chorus" && section.snippets.length >=2
+		section.complete = true
+		section.save
+	end
+
+	if section.section_type == "verse" && section.snippets.length >=4
+		section.complete = true
+		section.save
+	end
+end
+
+Song.all.each do |song|
+	if song.snippets.size >= 18
+		song.complete = true
+		song.save
+	end
 end
